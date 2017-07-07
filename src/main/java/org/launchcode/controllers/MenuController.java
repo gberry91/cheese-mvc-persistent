@@ -50,7 +50,8 @@ public class MenuController {
     public String add(Model model,
                       @ModelAttribute @Valid Menu menu, Errors errors) {
         if (errors.hasErrors()) {
-            return "add";
+            model.addAttribute("title", "Add Menu");
+            return "menu/add";
         }
 
         menuDao.save(menu);

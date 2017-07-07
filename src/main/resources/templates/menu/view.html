@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:fragment="head">
-    <meta charset="UTF-8"/>
-    <title th:text="${title}">My Cheeses</title>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<nav th:replace="fragments :: navigation"></nav>
 
-</head>
-<body>
+<ul>
+    <li th:each="cheese : ${cheeses}" th:text="${cheese.name}"></li>
+</ul>
 
-<nav th:fragment="navigation">
-    <a href="/cheese">List</a> |
-    <a href="/cheese/add">Add</a> |
-    <a href="/cheese/remove">Remove</a>
-</nav>
+<p th:unless="${cheeses.size()}"><i>No cheeses yet</i></p>
+
+<p><a th:href="'/menu/add-item/' + ${menuId}">Add Cheese</a></p>
 
 </body>
 </html>

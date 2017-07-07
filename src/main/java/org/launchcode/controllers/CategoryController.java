@@ -41,6 +41,7 @@ public class CategoryController {
     public String addCategory(Model model,
                               @ModelAttribute @Valid Category category, Errors errors) {
         if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Category");
             return "category/add";
         }
 
